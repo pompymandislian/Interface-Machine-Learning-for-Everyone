@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from scipy.stats import randint
 from scipy.stats import uniform
 import requests
 from PIL import Image
@@ -3345,9 +3344,9 @@ if uploaded_file is not None:
                     
                     # Parameters to search
                     param_dist = {
-                        'n_clusters': randint(2, 10),
+                        'n_clusters': np.random.randint(2, 10),
                         'init': ['k-means++', 'random'],
-                        'n_init': randint(10, 31)
+                        'n_init': np.random.randint(10, 31)
                     }
 
                     # Initialize KMeans
@@ -3404,7 +3403,7 @@ if uploaded_file is not None:
 
                     # Parameters to search for GMM
                     param_dist = {
-                        'n_components': randint(2, 10),  
+                        'n_components': np.random.randint(2, 10),  
                         'init_params': ['kmeans', 'random'],  
                         'covariance_type': ['full', 'tied', 'diag', 'spherical']  
                     }
@@ -3464,7 +3463,7 @@ if uploaded_file is not None:
 
                     # Parameters to search for Agglomerative Clustering
                     param_dist = {
-                        'n_clusters': randint(2, 10),  # Number of clusters
+                        'n_clusters': np.random.randint(2, 10),  # Number of clusters
                         'linkage': ['ward', 'complete', 'average', 'single']  # Linkage method
                     }
 
@@ -3524,7 +3523,7 @@ if uploaded_file is not None:
                     # Parameters to search for DBSCAN Clustering
                     param_dist = {
                         'eps': uniform(0.01),  
-                        'min_samples': randint(2, 11),  
+                        'min_samples': np.random.randint(2, 11),  
                     }
 
                     # Initialize DBSCAN Clustering
