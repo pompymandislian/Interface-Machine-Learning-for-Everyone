@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from scipy.stats import uniform
 import requests
 from PIL import Image
 from io import BytesIO
@@ -3522,7 +3521,7 @@ if uploaded_file is not None:
 
                     # Parameters to search for DBSCAN Clustering
                     param_dist = {
-                        'eps': uniform(0.01),  
+                        'eps': np.random.uniform(0.01),  
                         'min_samples': np.random.randint(2, 11),  
                     }
 
