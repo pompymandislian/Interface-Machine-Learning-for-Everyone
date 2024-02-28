@@ -1,0 +1,83 @@
+/* Aturan untuk header */
+.stApp > header {
+    background-color: transparent;
+    color: #000; /* Warna teks header diubah menjadi hitam */
+}
+
+/* Aturan untuk konten utama */
+.stApp {
+    margin: auto;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow: auto;
+    background: linear-gradient(315deg, #4f2991 3%, #7dc4ff 38%, #36cfcc 68%, #a92ed3 98%);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    color: #000; /* Warna Teks Hitam */
+}
+
+/* Aturan untuk konten utama */
+.stApp .main-content {
+    margin-left: 20%; /* Menggeser konten utama ke kanan */
+    padding: 20px; /* Padding untuk ruang khusus konten */
+}
+
+/* Aturan untuk tombol */
+.stApp button {
+    background-color: #007bff; /* Warna latar belakang tombol */
+    color: #000; /* Warna teks tombol diubah menjadi hitam */
+    border: none; /* Tanpa border */
+    padding: 10px 20px; /* Padding */
+    cursor: pointer; /* Kursor menunjukkan tindakan dapat dilakukan */
+    border-radius: 4px; /* Sudut border-radius */
+    font-size: 16px; /* Ukuran font */
+    transition: background-color 0.3s ease; /* Efek transisi */
+}
+
+.stApp button:hover {
+    background-color: #0056b3; /* Warna latar belakang tombol saat hover */
+}
+
+/* Aturan untuk kotak pilihan */
+.stApp select {
+    background-color: #fff; /* Warna latar belakang kotak pilihan */
+    color: #000; /* Warna teks kotak pilihan diubah menjadi hitam */
+    border: 1px solid #ced4da; /* Border */
+    padding: 8px 12px; /* Padding */
+    font-size: 16px; /* Ukuran font */
+    border-radius: 4px; /* Sudut border-radius */
+}
+
+/* Aturan untuk kotak pilihan yang telah dipilih */
+.stApp select option:checked {
+    background-color: #007bff; /* Warna latar belakang kotak pilihan yang dipilih */
+    color: #fff; /* Warna teks kotak pilihan yang dipilih */
+}
+
+/* Animasi latar belakang */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+        color: #fff; /* Warna teks diubah menjadi putih */
+    }
+    50% {
+        background-position: 100% 50%;
+        color: #000; /* Warna teks diubah menjadi hitam */
+    }
+    100% {
+        background-position: 0% 50%;
+        color: #f3e9d2; /* Warna teks diubah menjadi kuning susu */
+    }
+}
+
+
+/* Efek hover untuk kotak pilihan */
+.stApp select:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan saat hover */
+}
+
+/* Efek hover untuk sidebar item */
+.stApp .sidebar-item:hover {
+    background-color: #e9ecef; /* Warna latar belakang saat hover */
+}
+
