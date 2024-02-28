@@ -62,9 +62,24 @@ st.sidebar.markdown('**Guideline: [*click here!*](https://www.google.com/search?
 st.sidebar.title('Load Data')
 uploaded_file = st.sidebar.file_uploader("Choose CSV or Excel file", type=['csv', 'xlsx', 'xls'])
 
-with open('D:/Project_Data/project/Project Pribadi/Template Model/style.css') as f:
-    css = f.read()
+import requests
 
+# URL file di GitHub
+github_url = 'https://raw.githubusercontent.com/pompymandislian/Interface-Machine-Learning-for-Everyone/main/style.css'
+
+# Lakukan HTTP GET request ke URL file di GitHub
+response = requests.get(github_url)
+
+# Periksa apakah permintaan berhasil
+if response.status_code == 200:
+    # Baca konten file
+    css = response.text
+    # Lakukan operasi lain dengan konten CSS
+    print(css)
+else:
+    # Jika permintaan gagal, cetak pesan kesalahan
+    print('Failed to retrieve CSS file:', response.status_code)
+    
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # select encoding
