@@ -130,7 +130,7 @@ if uploaded_file is not None:
 
     st.title('Predict Field')
     st.write("Hello, welcome to this website. You can use it to predict your data. Enjoy using this website." 
-              "Don't forget to read **guidline** that provide from us, thankyou 😊.")
+              "Don't forget to read **Guideline** that provide from us, thankyou 😊.")
 
     # Choose model
     model_option = st.sidebar.selectbox("Model Option:", ("Classification", "Regression", "Clustering"))
