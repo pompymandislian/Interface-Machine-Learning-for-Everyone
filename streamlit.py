@@ -40,25 +40,6 @@ from sklearn.metrics import roc_auc_score
 from sklearn.inspection import permutation_importance
 from sklearn.decomposition import PCA
 
-# URL file di GitHub
-github_url = 'https://raw.githubusercontent.com/pompymandislian/Interface-Machine-Learning-for-Everyone/main/style.css'
-
-# Lakukan HTTP GET request ke URL file di GitHub
-response = requests.get(github_url)
-
-# Check request
-if response.status_code == 200:
-    #
-    Read file
-    css = response.text
-    
-    # Result
-    print(css)
-    
-else:
-    print('Failed to retrieve CSS file:', response.status_code)
-
-st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # set pages of dashboard
 st.set_page_config(
@@ -75,6 +56,26 @@ st.set_page_config(
 
 # # Show image
 # st.sidebar.image(image, use_column_width=True, width=50)
+
+# URL file di GitHub
+github_url = 'https://raw.githubusercontent.com/pompymandislian/Interface-Machine-Learning-for-Everyone/main/style.css'
+
+# Lakukan HTTP GET request ke URL file di GitHub
+response = requests.get(github_url)
+
+# Check request
+if response.status_code == 200:
+    # Read file
+    css = response.text
+    
+    # Result
+    print(css)
+    
+else:
+    print('Failed to retrieve CSS file:', response.status_code)
+
+st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+
 
 st.sidebar.markdown('**Guideline: [*click here!*](https://www.google.com/search?sca_esv=682fb458cb082d73&rlz=1C1CHBF_enKR1058ID1058&sxsrf=ACQVn0-tyTd2f481K-TV5nlom58dn6NFZg:1708680383706&q=apel&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjMuri6ksGEAxXI1TgGHZwWDKYQ0pQJegQIDBAB&biw=1422&bih=612&dpr=1.35#imgrc=88-1RY50Ek_bsM)**')
 st.sidebar.title('Load Data')
