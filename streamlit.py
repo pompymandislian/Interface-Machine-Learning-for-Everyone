@@ -103,20 +103,25 @@ if uploaded_file is not None:
                 df_copy = df.copy()
             
             elif delimiter_option == 'Open CSV':
-                    df = pd.read_csv(uploaded_file)
-                    df_copy = df.copy()
+                df = pd.read_csv(uploaded_file)
+                df_copy = df.copy()
 
-            else:
+            # Check if the DataFrame is empty
+            if df.empty:
                 st.warning("Empty CSV file detected.")
                 st.stop()  # Stop further execution
 
         except Exception as e:
-            st.sidebar.error(f"Error reading CSV file: {e}, Please select remove delimeter")
-            st.sitebar.stop()  # Stop further execution
+            st.sidebar.error(f"Error reading CSV file: {e}, Please select remove delimiter")
+            st.stop()  # Stop further execution
 
     elif file_ext in ['xls', 'xlsx']:
-        df = pd.read_excel(uploaded_file)
-        df_copy = df.copy()
+        try:
+            df = pd.read_excel(uploaded_file)
+            df_copy = df.copy()
+        except Exception as e:
+            st.sidebar.error(f"Error reading Excel file: {e}")
+            st.stop()  # Stop further execution
         
     else:
         st.error('Your file must be in Excel or CSV format!')
