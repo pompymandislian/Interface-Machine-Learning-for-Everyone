@@ -139,7 +139,7 @@ if uploaded_file is not None:
               "Don't forget to read **Guideline** that provide from us, thankyou 😊.")
 
     # Choose model
-    model_option = st.sidebar.selectbox("Machine Learning Option:", ("Classification", "Regression", "Clustering"))
+    model_option = st.sidebar.selectbox("Machine learning option:", ("Classification", "Regression", "Clustering"))
     
     try:
         global target_column
