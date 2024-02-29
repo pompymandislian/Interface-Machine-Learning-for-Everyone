@@ -9,11 +9,12 @@
     margin: auto;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     overflow: auto;
-    background: linear-gradient(315deg, #4f2991 3%, #7dc4ff 38%, #36cfcc 68%, #a92ed3 98%);
+    /* background: linear-gradient(315deg, #4f2991 3%, #7dc4ff 38%, #36cfcc 68%, #a92ed3 98%); */
+    background-color: #2f70a5;
     animation: gradient 15s ease infinite;
     background-size: 400% 400%;
     background-attachment: fixed;
-    color: #000; /* Warna Teks Hitam */
+    color: #fff; /* Warna Teks Hitam */
 }
 
 /* Aturan untuk konten utama */
@@ -24,8 +25,8 @@
 
 /* Aturan untuk tombol */
 .stApp button {
-    background-color: #007bff; /* Warna latar belakang tombol */
-    color: #000; /* Warna teks tombol diubah menjadi hitam */
+    background-color: #333; /* Warna latar belakang tombol */
+    color: #fff; /* Warna teks tombol diubah menjadi hitam */
     border: none; /* Tanpa border */
     padding: 10px 20px; /* Padding */
     cursor: pointer; /* Kursor menunjukkan tindakan dapat dilakukan */
@@ -35,7 +36,7 @@
 }
 
 .stApp button:hover {
-    background-color: #0056b3; /* Warna latar belakang tombol saat hover */
+    background-color: #fff; /* Warna latar belakang tombol saat hover */
 }
 
 /* Aturan untuk kotak pilihan */
@@ -54,30 +55,16 @@
     color: #fff; /* Warna teks kotak pilihan yang dipilih */
 }
 
-/* Animasi latar belakang */
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-        color: #fff; /* Warna teks diubah menjadi putih */
-    }
-    50% {
-        background-position: 100% 50%;
-        color: #000; /* Warna teks diubah menjadi hitam */
-    }
-    100% {
-        background-position: 0% 50%;
-        color: #f3e9d2; /* Warna teks diubah menjadi kuning susu */
-    }
-}
-
-
 /* Efek hover untuk kotak pilihan */
 .stApp select:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan saat hover */
 }
 
-/* Efek hover untuk sidebar item */
-.stApp .sidebar-item:hover {
-    background-color: #e9ecef; /* Warna latar belakang saat hover */
+.stApp .sidebar-item {
+    background-color: #333; /* Warna latar belakang saat hover */
 }
 
+/* Efek hover untuk sidebar item */
+.stApp .sidebar-item:hover {
+    background-color: #636262; /* Warna latar belakang saat hover */
+}
