@@ -1,4 +1,3 @@
-from sympy import RegularPolygon
 import streamlit as st
 import pandas as pd
 import requests
