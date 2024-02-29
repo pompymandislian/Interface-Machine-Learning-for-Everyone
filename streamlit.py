@@ -86,12 +86,13 @@ if uploaded_file is not None:
 
     # Check the type of the uploaded file
     file_ext = uploaded_file.name.split('.')[-1]
-
-    # Initialize delimiter option
-    delimiter_option = st.sidebar.selectbox("Delimiter Option:", ("Open CSV", "Remove Delimiter"))
     
     # Read the CSV or Excel file into a DataFrame
     if file_ext == 'csv':
+        
+        # Initialize delimiter option
+        delimiter_option = st.sidebar.selectbox("Delimiter Option:", ("Open CSV", "Remove Delimiter"))
+        
         try:
             if delimiter_option == "Remove Delimiter":
                 # Initialize delimiter list for 'With Delimiter' option
