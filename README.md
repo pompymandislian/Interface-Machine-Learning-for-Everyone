@@ -4,12 +4,7 @@ Welcome to our user-friendly interface designed for everyone! Whether you're a n
 
 **Demonstrator Video**
 ----
-<video width="640" height="360" controls muted>
-  <source src="https://github.com/pompymandislian/Interface-Machine-Learning-for-Everyone/assets/57421096/155b39fe-88aa-4300-b4eb-4b0805250799" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-
+https://github.com/pompymandislian/Interface-Machine-Learning-for-Everyone/assets/57421096/8f64372b-3374-4b9f-aadd-d3f4e0ec7c3f
 
 **What can you do with this UI?**
 ---
