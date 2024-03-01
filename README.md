@@ -36,7 +36,7 @@ K-Means, Gaussian Mixture Model (GMM), Agglomerative Clustering, DBSCAN (Density
 
 ## **Is deep learning supported?**
 ---
-While deep learning capabilities are not yet available, I'm continuously improving our system to include neural networks and other deep learning algorithms in the future.
+While deep learning capabilities are not yet available, I'm continuously improving my system to include neural networks and other deep learning algorithms in the future.
 
 ## **Getting Started**
 -----
