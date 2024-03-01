@@ -2,6 +2,11 @@
 ---
 Welcome to our user-friendly interface designed for everyone! Whether you're a novice or an expert, this UI enables you to create machine learning models without the need for coding. With just a few clicks, you can perform analysis and predictions using your data.
 
+![Streamlit](https://assets.streamlit.io/images/brand/streamlit-logo-primary-light.svg)
+![Python](https://www.python.org/static/community_logos/python-logo.png)
+![Git](https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png)
+
+
 **What can you do with this UI?**
 ---
 You can utilize various machine learning techniques such as:
@@ -32,7 +37,7 @@ K-Means, Gaussian Mixture Model (GMM), Agglomerative Clustering, DBSCAN (Density
 
 ## **Is deep learning supported?**
 ---
-While deep learning capabilities are not yet available, we're continuously improving our system to include neural networks and other deep learning algorithms in the future.
+While deep learning capabilities are not yet available, I'm continuously improving our system to include neural networks and other deep learning algorithms in the future.
 
 ## **Getting Started**
 -----
