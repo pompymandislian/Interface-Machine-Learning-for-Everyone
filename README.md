@@ -4,7 +4,8 @@ Welcome to our user-friendly interface designed for everyone! Whether you're a n
 
 **Demonstrator Video**
 ----
-[![Demonstrator Video](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID_HERE)
+https://github.com/pompymandislian/Interface-Machine-Learning-for-Everyone/assets/57421096/155b39fe-88aa-4300-b4eb-4b0805250799
+
 
 **What can you do with this UI?**
 ---
