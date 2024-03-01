@@ -22,9 +22,6 @@ We offer a range of models to suit your needs, including:
   ---------
 K-Nearest Neighbors (K-NN), Decision Trees, Logistic Regression, XGBoost, Random Forest, AdaBoost, Support Vector Machines (SVM)
 
-**Is deep learning supported?**
-While deep learning capabilities are not yet available, we're continuously improving our system to include neural networks and other deep learning algorithms in the future.
-
 **Regression**
   ---------
 K-Nearest Neighbors (K-NN), Decision Trees, Linear Regression, XGBoost, Random Forest, AdaBoost, Support Vector Machines (SVM), Ridge, Lasso
@@ -33,9 +30,14 @@ K-Nearest Neighbors (K-NN), Decision Trees, Linear Regression, XGBoost, Random F
   ---------
 K-Means, Gaussian Mixture Model (GMM), Agglomerative Clustering, DBSCAN (Density-Based Spatial Clustering)
 
+## **Is deep learning supported?**
+---
+While deep learning capabilities are not yet available, we're continuously improving our system to include neural networks and other deep learning algorithms in the future.
+
 ## **Getting Started**
 -----
 To get started, simply deploy the UI using Streamlit and input your data. You'll be guided through the process of selecting models, tuning parameters, and making predictions effortlessly.
 Enjoy exploring the world of machine learning with our intuitive UI!
 
-[Visit website]([https://example.com](https://interface-machine-learning-for-everyone-zqm7h729a7bwnuvcdvcjzt.streamlit.app/))
+[Visit website](https://interface-machine-learning-for-everyone-zqm7h729a7bwnuvcdvcjzt.streamlit.app/)
+
