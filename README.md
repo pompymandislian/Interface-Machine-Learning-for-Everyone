@@ -16,7 +16,7 @@ You can utilize various machine learning techniques such as:
 
 **Can you perform multiclass classification?**
 ---
-Currently, our system supports binary classification. However, if you require multiclass classification capabilities, simply let us know, and we'll incorporate it for you!
+Currently, my system supports binary classification. However, if you require multiclass classification capabilities, simply let me know, and we'll incorporate it for you!
 
 ## **What models are available?**
 ---
