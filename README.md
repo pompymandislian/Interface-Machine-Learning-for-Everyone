@@ -1,6 +1,6 @@
 # **Introduction**
 ---
-Welcome to our user-friendly interface designed for everyone! Whether you're a novice or an expert, this UI enables you to create machine learning models without the need for coding. With just a few clicks, you can perform analysis and predictions using your data.
+Welcome to my user-friendly interface designed for everyone! Whether you're a novice or an expert, this UI enables you to create machine learning models without the need for coding. With just a few clicks, you can perform analysis and predictions using your data.
 
 **Demonstrator Video**
 ----
