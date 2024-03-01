@@ -4,6 +4,7 @@ Welcome to our user-friendly interface designed for everyone! Whether you're a n
 
 **Demonstrator Video**
 ----
+[![Demonstrator Video](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID_HERE)
 
 **What can you do with this UI?**
 ---
