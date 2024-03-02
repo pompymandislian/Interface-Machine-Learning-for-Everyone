@@ -5,6 +5,7 @@ from PIL import Image
 from io import BytesIO
 import matplotlib.pyplot as plt
 import base64
+from scipy.stats import uniform, randint
 
 # Feature Engineering
 from sklearn.model_selection import train_test_split, RandomizedSearchCV, KFold
@@ -40,6 +41,8 @@ from sklearn.metrics import roc_auc_score
 from sklearn.inspection import permutation_importance
 from sklearn.decomposition import PCA
 
+with open('D:/Project_Data/project/Project Pribadi/Template Model/style.css') as f:
+    css = f.read()
 
 # set pages of dashboard
 st.set_page_config(
@@ -57,42 +60,23 @@ st.set_page_config(
 # # Show image
 # st.sidebar.image(image, use_column_width=True, width=50)
 
-# URL file di GitHub
-github_url = 'https://raw.githubusercontent.com/pompymandislian/Interface-Machine-Learning-for-Everyone/main/style.css'
-
-# Lakukan HTTP GET request ke URL file di GitHub
-response = requests.get(github_url)
-
-# Check request
-if response.status_code == 200:
-    # Read file
-    css = response.text
-    
-    # Result
-    print(css)
-    
-else:
-    print('Failed to retrieve CSS file:', response.status_code)
-
-st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
-
-
 st.sidebar.markdown('**Guideline: [*click here!*](https://www.google.com/search?sca_esv=682fb458cb082d73&rlz=1C1CHBF_enKR1058ID1058&sxsrf=ACQVn0-tyTd2f481K-TV5nlom58dn6NFZg:1708680383706&q=apel&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjMuri6ksGEAxXI1TgGHZwWDKYQ0pQJegQIDBAB&biw=1422&bih=612&dpr=1.35#imgrc=88-1RY50Ek_bsM)**')
 st.sidebar.title('Load Data')
 uploaded_file = st.sidebar.file_uploader("Choose CSV or Excel file", type=['csv', 'xlsx', 'xls'])
+
+st.sidebar.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # If the file has been uploaded
 if uploaded_file is not None:
 
     # Check the type of the uploaded file
     file_ext = uploaded_file.name.split('.')[-1]
+
+    # Initialize delimiter option
+    delimiter_option = st.sidebar.selectbox("Delimiter Option:", ("Open CSV", "Remove Delimiter"))
     
     # Read the CSV or Excel file into a DataFrame
     if file_ext == 'csv':
-        
-        # Initialize delimiter option
-        delimiter_option = st.sidebar.selectbox("Delimiter Option:", ("Open CSV", "Remove Delimiter"))
-        
         try:
             if delimiter_option == "Remove Delimiter":
                 # Initialize delimiter list for 'With Delimiter' option
@@ -136,10 +120,10 @@ if uploaded_file is not None:
 
     st.title('Predict Field')
     st.write("Hello, welcome to this website. You can use it to predict your data. Enjoy using this website." 
-              "Don't forget to read **Guideline** that provide from us, thankyou 😊.")
+              "Don't forget to read **guidline** that provide from us, thankyou 😊.")
 
     # Choose model
-    model_option = st.sidebar.selectbox("Machine learning option:", ("Classification", "Regression", "Clustering"))
+    model_option = st.sidebar.selectbox("machine learning option:", ("Classification", "Regression", "Clustering"))
     
     try:
         global target_column
@@ -3318,261 +3302,258 @@ if uploaded_file is not None:
     def clustering():
         """Function for evaluation metrics for each model selected"""
 
-        try:
-            # metrics model
-            metric_clustering = {'Model Name': [], 'Best Cluster': [], 'Silhouette': [], 'Calinski-Harabasz': [], 'Davies-Bouldin': [],
-                                'adjusted_mutual_info_score': [], 'adjusted_rand_score': [], 'normalized_mutual_info_score': []}
-            
-            # Select model
-            model_select_clust = st.selectbox('Select Model', ('----', 'K-Means','DBSCAN',
-                                                                        'GMM', 'Agglomerative'),
-                                                                        key='clustering')
-            
+        # metrics model
+        metric_clustering = {'Model Name': [], 'Best Cluster': [], 'Silhouette': [], 'Calinski-Harabasz': [], 'Davies-Bouldin': [],
+                            'adjusted_mutual_info_score': [], 'adjusted_rand_score': [], 'normalized_mutual_info_score': []}
+        
+        # Select model
+        model_select_clust = st.selectbox('Select Model', ('K-Means','DBSCAN',
+                                                            'GMM', 'Agglomerative'),
+                                                                key='clustering')
+        
 
-            if model_option == 'Clustering':
+        if model_option == 'Clustering':
 
-                global labels
+            global labels
+            
+            if model_select_clust in 'K-Means':
                 
-                if model_select_clust in 'K-NN' :
-                    
-                    # Parameters to search
-                    param_dist = {
-                        'n_clusters': np.random.randint(2, 10),
-                        'init': ['k-means++', 'random'],
-                        'n_init': np.np.random.randint(10, 31)
-                    }
+                # Parameters to search
+                param_dist = {
+                    'n_clusters': randint(2, 10),
+                    'init': ['k-means++', 'random'],
+                    'n_init': randint(10, 31)
+                }
 
-                    # Initialize KMeans
-                    kmeans = KMeans()
+                # Initialize KMeans
+                kmeans = KMeans()
 
-                    # Perform RandomizedSearch
-                    random_search = RandomizedSearchCV(estimator=kmeans,
-                                                        param_distributions=param_dist,
-                                                        scoring=make_scorer(silhouette_score),
-                                                        n_jobs=-1)
-
-                    random_search.fit(df)
-
-                    # Best parameters and best silhouette score
-                    best_params = random_search.best_params_
-
-                    # Best number of clusters
-                    best_n_components = best_params['n_clusters']
-
-                    # Assuming you have obtained labels from the clustering algorithm
-                    labels = random_search.best_estimator_.labels_
-                    
-                    # Add best cluster to the dictionary
-                    metric_clustering['Best Cluster'].append(best_n_components)
-                    
-                    # Calculate Silhouette score
-                    silhouette = silhouette_score(df, labels)
-                    metric_clustering['Silhouette'].append(silhouette)
-
-                    # Calculate Calinski-Harabasz score
-                    calinski_harabasz = calinski_harabasz_score(df, labels)
-                    metric_clustering['Calinski-Harabasz'].append(calinski_harabasz)
-
-                    # Calculate Davies-Bouldin score
-                    davies_bouldin = davies_bouldin_score(df, labels)
-                    metric_clustering['Davies-Bouldin'].append(davies_bouldin)
-
-                    # Calculate adjusted mutual information score
-                    adj_mutual_info = adjusted_mutual_info_score(labels, labels)
-                    metric_clustering['adjusted_mutual_info_score'].append(adj_mutual_info)
-
-                    # Calculate adjusted rand score
-                    adj_rand = adjusted_rand_score(labels, labels)
-                    metric_clustering['adjusted_rand_score'].append(adj_rand)
-
-                    # Calculate normalized mutual information score
-                    norm_mutual_info = normalized_mutual_info_score(labels, labels)
-                    metric_clustering['normalized_mutual_info_score'].append(norm_mutual_info)
-                    
-                    # Add model name to the dictionary
-                    metric_clustering['Model Name'].append('K-Means')
-                    
-                elif model_select_clust == 'GMM':
-
-                    # Parameters to search for GMM
-                    param_dist = {
-                        'n_components': np.random.randint(2, 10),  
-                        'init_params': ['kmeans', 'random'],  
-                        'covariance_type': ['full', 'tied', 'diag', 'spherical']  
-                    }
-
-                    # Initialize GMM
-                    gmm = GaussianMixture()
-
-                    # Perform RandomizedSearch
-                    random_search = RandomizedSearchCV(estimator=gmm,
+                # Perform RandomizedSearch
+                random_search = RandomizedSearchCV(estimator=kmeans,
                                                     param_distributions=param_dist,
-                                                    n_iter=10,  # Jumlah iterasi pencarian acak
                                                     scoring=make_scorer(silhouette_score),
                                                     n_jobs=-1)
 
-                    random_search.fit(df)
+                random_search.fit(df)
 
-                    # Best parameters
-                    best_params = random_search.best_params_
+                # Best parameters and best silhouette score
+                best_params = random_search.best_params_
 
-                    # Best number of clusters
-                    best_n_components = best_params['n_components']
+                # Best number of clusters
+                best_n_components = best_params['n_clusters']
 
-                    # Assuming you have obtained labels from the clustering algorithm
-                    labels = random_search.best_estimator_.predict(df)
-                    
-                    # Add best cluster to the dictionary
-                    metric_clustering['Best Cluster'].append(best_n_components)
-                    
-                    # Calculate Silhouette score
-                    silhouette = silhouette_score(df, labels)
-                    metric_clustering['Silhouette'].append(silhouette)
+                # Assuming you have obtained labels from the clustering algorithm
+                labels = random_search.best_estimator_.labels_
+                
+                # Add best cluster to the dictionary
+                metric_clustering['Best Cluster'].append(best_n_components)
+                
+                # Calculate Silhouette score
+                silhouette = silhouette_score(df, labels)
+                metric_clustering['Silhouette'].append(silhouette)
 
-                    # Calculate Calinski-Harabasz score
-                    calinski_harabasz = calinski_harabasz_score(df, labels)
-                    metric_clustering['Calinski-Harabasz'].append(calinski_harabasz)
+                # Calculate Calinski-Harabasz score
+                calinski_harabasz = calinski_harabasz_score(df, labels)
+                metric_clustering['Calinski-Harabasz'].append(calinski_harabasz)
 
-                    # Calculate Davies-Bouldin score
-                    davies_bouldin = davies_bouldin_score(df, labels)
-                    metric_clustering['Davies-Bouldin'].append(davies_bouldin)
+                # Calculate Davies-Bouldin score
+                davies_bouldin = davies_bouldin_score(df, labels)
+                metric_clustering['Davies-Bouldin'].append(davies_bouldin)
 
-                    # Calculate adjusted mutual information score
-                    adj_mutual_info = adjusted_mutual_info_score(labels, labels)
-                    metric_clustering['adjusted_mutual_info_score'].append(adj_mutual_info)
+                # Calculate adjusted mutual information score
+                adj_mutual_info = adjusted_mutual_info_score(labels, labels)
+                metric_clustering['adjusted_mutual_info_score'].append(adj_mutual_info)
 
-                    # Calculate adjusted rand score
-                    adj_rand = adjusted_rand_score(labels, labels)
-                    metric_clustering['adjusted_rand_score'].append(adj_rand)
+                # Calculate adjusted rand score
+                adj_rand = adjusted_rand_score(labels, labels)
+                metric_clustering['adjusted_rand_score'].append(adj_rand)
 
-                    # Calculate normalized mutual information score
-                    norm_mutual_info = normalized_mutual_info_score(labels, labels)
-                    metric_clustering['normalized_mutual_info_score'].append(norm_mutual_info)
-                    
-                    # Add model name to the dictionary
-                    metric_clustering['Model Name'].append('GMM')
+                # Calculate normalized mutual information score
+                norm_mutual_info = normalized_mutual_info_score(labels, labels)
+                metric_clustering['normalized_mutual_info_score'].append(norm_mutual_info)
+                
+                # Add model name to the dictionary
+                metric_clustering['Model Name'].append('K-Means')
+                
+            elif model_select_clust == 'GMM':
 
-                elif model_select_clust == 'Agglomerative' :
+                # Parameters to search for GMM
+                param_dist = {
+                    'n_components': randint(2, 10),  
+                    'init_params': ['kmeans', 'random'],  
+                    'covariance_type': ['full', 'tied', 'diag', 'spherical']  
+                }
 
-                    # Parameters to search for Agglomerative Clustering
-                    param_dist = {
-                        'n_clusters': np.random.randint(2, 10),  # Number of clusters
-                        'linkage': ['ward', 'complete', 'average', 'single']  # Linkage method
-                    }
+                # Initialize GMM
+                gmm = GaussianMixture()
 
-                    # Initialize Agglomerative Clustering
-                    clustering = AgglomerativeClustering()
+                # Perform RandomizedSearch
+                random_search = RandomizedSearchCV(estimator=gmm,
+                                                param_distributions=param_dist,
+                                                n_iter=10,  # Jumlah iterasi pencarian acak
+                                                scoring=make_scorer(silhouette_score),
+                                                n_jobs=-1)
 
-                    # Perform RandomizedSearch
-                    random_search = RandomizedSearchCV(estimator=clustering,
-                                                        param_distributions=param_dist,
-                                                        n_iter=10,  # Number of random parameter settings that are sampled
-                                                        scoring=make_scorer(silhouette_score),
-                                                        n_jobs=-1)
+                random_search.fit(df)
 
-                    random_search.fit(df)  # Assuming df is your data
+                # Best parameters
+                best_params = random_search.best_params_
 
-                    # Best parameters
-                    best_params = random_search.best_params_
+                # Best number of clusters
+                best_n_components = best_params['n_components']
 
-                    # Best number of clusters
-                    best_n_clusters = best_params['n_clusters']
+                # Assuming you have obtained labels from the clustering algorithm
+                labels = random_search.best_estimator_.predict(df)
+                
+                # Add best cluster to the dictionary
+                metric_clustering['Best Cluster'].append(best_n_components)
+                
+                # Calculate Silhouette score
+                silhouette = silhouette_score(df, labels)
+                metric_clustering['Silhouette'].append(silhouette)
 
-                    # Assuming you have obtained labels from the clustering algorithm
-                    labels = random_search.best_estimator_.labels_
-                    
-                    # Add best cluster to the dictionary
-                    metric_clustering['Best Cluster'].append(best_n_clusters)
-                    
-                    # Calculate Silhouette score
-                    silhouette = silhouette_score(df, labels)
-                    metric_clustering['Silhouette'].append(silhouette)
+                # Calculate Calinski-Harabasz score
+                calinski_harabasz = calinski_harabasz_score(df, labels)
+                metric_clustering['Calinski-Harabasz'].append(calinski_harabasz)
 
-                    # Calculate Calinski-Harabasz score
-                    calinski_harabasz = calinski_harabasz_score(df, labels)
-                    metric_clustering['Calinski-Harabasz'].append(calinski_harabasz)
+                # Calculate Davies-Bouldin score
+                davies_bouldin = davies_bouldin_score(df, labels)
+                metric_clustering['Davies-Bouldin'].append(davies_bouldin)
 
-                    # Calculate Davies-Bouldin score
-                    davies_bouldin = davies_bouldin_score(df, labels)
-                    metric_clustering['Davies-Bouldin'].append(davies_bouldin)
+                # Calculate adjusted mutual information score
+                adj_mutual_info = adjusted_mutual_info_score(labels, labels)
+                metric_clustering['adjusted_mutual_info_score'].append(adj_mutual_info)
 
-                    # Calculate adjusted mutual information score
-                    adj_mutual_info = adjusted_mutual_info_score(labels, labels)
-                    metric_clustering['adjusted_mutual_info_score'].append(adj_mutual_info)
+                # Calculate adjusted rand score
+                adj_rand = adjusted_rand_score(labels, labels)
+                metric_clustering['adjusted_rand_score'].append(adj_rand)
 
-                    # Calculate adjusted rand score
-                    adj_rand = adjusted_rand_score(labels, labels)
-                    metric_clustering['adjusted_rand_score'].append(adj_rand)
+                # Calculate normalized mutual information score
+                norm_mutual_info = normalized_mutual_info_score(labels, labels)
+                metric_clustering['normalized_mutual_info_score'].append(norm_mutual_info)
+                
+                # Add model name to the dictionary
+                metric_clustering['Model Name'].append('GMM')
 
-                    # Calculate normalized mutual information score
-                    norm_mutual_info = normalized_mutual_info_score(labels, labels)
-                    metric_clustering['normalized_mutual_info_score'].append(norm_mutual_info)
-                    
-                    # Add model name to the dictionary
-                    metric_clustering['Model Name'].append('Agglomerative')
+            elif model_select_clust == 'Agglomerative' :
 
-                elif model_select_clust == 'DBSCAN':
+                # Parameters to search for Agglomerative Clustering
+                param_dist = {
+                    'n_clusters': randint(2, 10),  # Number of clusters
+                    'linkage': ['ward', 'complete', 'average', 'single']  # Linkage method
+                }
 
-                    # Parameters to search for DBSCAN Clustering
-                    param_dist = {
-                        'eps': np.uniform(0.01),  
-                        'min_samples': np.random.randint(2, 11),  
-                    }
+                # Initialize Agglomerative Clustering
+                clustering = AgglomerativeClustering()
 
-                    # Initialize DBSCAN Clustering
-                    clustering = DBSCAN()
+                # Perform RandomizedSearch
+                random_search = RandomizedSearchCV(estimator=clustering,
+                                                    param_distributions=param_dist,
+                                                    n_iter=10,  # Number of random parameter settings that are sampled
+                                                    scoring=make_scorer(silhouette_score),
+                                                    n_jobs=-1)
 
-                    # Perform RandomizedSearch
-                    random_search = RandomizedSearchCV(estimator=clustering,
-                                                       param_distributions=param_dist,
-                                                       n_iter=10, 
-                                                       scoring=make_scorer(silhouette_score),
-                                                       n_jobs=-1)
+                random_search.fit(df)  # Assuming df is your data
 
-                    random_search.fit(df)  # Assuming X is your data
+                # Best parameters
+                best_params = random_search.best_params_
 
-                    # Assuming you have obtained labels from the clustering algorithm
-                    labels = random_search.best_estimator_.labels_
+                # Best number of clusters
+                best_n_clusters = best_params['n_clusters']
 
-                    # Calculate Silhouette score
-                    silhouette = silhouette_score(df, labels)
-                    metric_clustering['Silhouette'].append(silhouette)
+                # Assuming you have obtained labels from the clustering algorithm
+                labels = random_search.best_estimator_.labels_
+                
+                # Add best cluster to the dictionary
+                metric_clustering['Best Cluster'].append(best_n_clusters)
+                
+                # Calculate Silhouette score
+                silhouette = silhouette_score(df, labels)
+                metric_clustering['Silhouette'].append(silhouette)
 
-                    # Count the number of clusters (excluding noise points)
-                    num_clusters = len(set(labels)) - (1 if -1 in labels else 0)
-                                        
-                    metric_clustering['Best Cluster'].append(num_clusters)
+                # Calculate Calinski-Harabasz score
+                calinski_harabasz = calinski_harabasz_score(df, labels)
+                metric_clustering['Calinski-Harabasz'].append(calinski_harabasz)
 
-                    # For metrics that don't depend on the length of labels, you can append placeholders
-                    metric_clustering['Calinski-Harabasz'].append(None)
-                    metric_clustering['Davies-Bouldin'].append(None)
-                    metric_clustering['adjusted_mutual_info_score'].append(None)
-                    metric_clustering['adjusted_rand_score'].append(None)
-                    metric_clustering['normalized_mutual_info_score'].append(None)
+                # Calculate Davies-Bouldin score
+                davies_bouldin = davies_bouldin_score(df, labels)
+                metric_clustering['Davies-Bouldin'].append(davies_bouldin)
 
-                    # Add model name to the dictionary
-                    metric_clustering['Model Name'].append('DBSCAN')
+                # Calculate adjusted mutual information score
+                adj_mutual_info = adjusted_mutual_info_score(labels, labels)
+                metric_clustering['adjusted_mutual_info_score'].append(adj_mutual_info)
 
-                # change metrics
-                metric_clustering = pd.DataFrame(metric_clustering)
-                st.write(metric_clustering)
+                # Calculate adjusted rand score
+                adj_rand = adjusted_rand_score(labels, labels)
+                metric_clustering['adjusted_rand_score'].append(adj_rand)
 
-                st.write('**Data with Cluster**')
-                df_copy['Cluster'] = labels
+                # Calculate normalized mutual information score
+                norm_mutual_info = normalized_mutual_info_score(labels, labels)
+                metric_clustering['normalized_mutual_info_score'].append(norm_mutual_info)
+                
+                # Add model name to the dictionary
+                metric_clustering['Model Name'].append('Agglomerative')
 
-                # Noise cluster
-                filter_noise = df_copy.loc[df_copy['Cluster'] != -1]                    
-                st.write(filter_noise)
+            elif model_select_clust == 'DBSCAN':
 
-                # Download data as CSV 
-                csv = df_copy.to_csv(index=False)
-                b64 = base64.b64encode(csv.encode()).decode()  # Convert dataframe to bytes
-                href = f'<a href="data:file/csv;base64,{b64}" download="{model_select_clust}_clustered_data.csv">Download {model_select_clust} Clustered Data as CSV</a>'
-                st.markdown(href, unsafe_allow_html=True)
-        
-        except:
-            st.warning('To obtain a data cluster, you must select the model evaluation first!')
+                # Parameters to search for DBSCAN Clustering
+                param_dist = {
+                    'eps': uniform(0.01, 1.0),  
+                    'min_samples': randint(2, 11),  
+                }
+
+                # Initialize DBSCAN Clustering
+                clustering = DBSCAN()
+
+                # Perform RandomizedSearch
+                random_search = RandomizedSearchCV(estimator=clustering,
+                                                    param_distributions=param_dist,
+                                                    n_iter=10, 
+                                                    scoring=make_scorer(silhouette_score),
+                                                    n_jobs=-1)
+
+                random_search.fit(df)  # Assuming X is your data
+
+                # Assuming you have obtained labels from the clustering algorithm
+                labels = random_search.best_estimator_.labels_
+
+                # Calculate Silhouette score
+                silhouette = silhouette_score(df, labels)
+                metric_clustering['Silhouette'].append(silhouette)
+
+                # Count the number of clusters (excluding noise points)
+                num_clusters = len(set(labels)) - (1 if -1 in labels else 0)
+                                    
+                metric_clustering['Best Cluster'].append(num_clusters)
+
+                # For metrics that don't depend on the length of labels, you can append placeholders
+                metric_clustering['Calinski-Harabasz'].append(None)
+                metric_clustering['Davies-Bouldin'].append(None)
+                metric_clustering['adjusted_mutual_info_score'].append(None)
+                metric_clustering['adjusted_rand_score'].append(None)
+                metric_clustering['normalized_mutual_info_score'].append(None)
+
+                # Add model name to the dictionary
+                metric_clustering['Model Name'].append('DBSCAN')
+
+            # change metrics
+            metric_clustering = pd.DataFrame(metric_clustering)
+            st.write(metric_clustering)
+
+            st.write('**Data with Cluster**')
+            df_copy['Cluster'] = labels
+
+            # Noise cluster
+            filter_noise = df_copy.loc[df_copy['Cluster'] != -1]                    
+            st.write(filter_noise)
+
+            # Download data as CSV 
+            csv = df_copy.to_csv(index=False)
+            b64 = base64.b64encode(csv.encode()).decode()  # Convert dataframe to bytes
+            href = f'<a href="data:file/csv;base64,{b64}" download="{model_select_clust}_clustered_data.csv">Download {model_select_clust} Clustered Data as CSV</a>'
+            st.markdown(href, unsafe_allow_html=True)
     
+        
     def user():
         """
         Function for input data from user
@@ -3783,7 +3764,7 @@ if uploaded_file is not None:
                         st.success(f"Yes, {select_models} Probability target {target_column}: {probability[0][1]:.2f}")
 
             # predict with model 
-            if model_option == 'Regression' and (split_option == 'Train-Test' or split_option == 'Train-Test-Validation'):
+            elif model_option == 'Regression' and (split_option == 'Train-Test' or split_option == 'Train-Test-Validation'):
 
                 if select_models_regriss == 'Decision Tree':
                    
@@ -3896,7 +3877,7 @@ if uploaded_file is not None:
                     
                    # Result
                    st.success(f'{select_models_regriss}: The predicted {target_column} is {predict[0]}')
-
+                               
     def main():
         """
         Function for running each previous function 
