@@ -43,5 +43,5 @@ While deep learning capabilities are not yet available, I'm continuously improvi
 To get started, simply deploy the UI using Streamlit and input your data. You'll be guided through the process of selecting models, tuning parameters, and making predictions effortlessly.
 Enjoy exploring the world of machine learning with our intuitive UI!
 
-[Visit website](https://interface-machine-learning-for-everyone-zqm7h729a7bwnuvcdvcjzt.streamlit.app/)
+[Visit website]([https://interface-machine-learning-for-everyone-zqm7h729a7bwnuvcdvcjzt.streamlit.app/](https://interface-machine-learning-for-everyone-zqm7h729a7bwnuvcdvcjzt.streamlit.app/)https://interface-machine-learning-for-everyone-zqm7h729a7bwnuvcdvcjzt.streamlit.app/)
 
