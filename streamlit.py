@@ -3917,9 +3917,6 @@ if uploaded_file is not None:
                 st.subheader('Form Input Data to Prediction')
                 user()
                 predict_user()
-        
-        except NameError:
-            st.warning("Wait until you are done selecting target data")
             
             if (model_option == 'Clustering'):
 
@@ -3927,7 +3924,10 @@ if uploaded_file is not None:
                 st.subheader('Clustering')
                 st.markdown('**Evaluation Metrics**')
                 clustering()
-
+                
+        except NameError:
+            st.warning("Wait until you are done selecting target data")
+    
     if __name__ == "__main__":
         main()
 
