@@ -3327,7 +3327,6 @@ if uploaded_file is not None:
                                                             'GMM', 'Agglomerative'),
                                                                 key='clustering')
         
-
         if model_option == 'Clustering':
 
             global labels
@@ -3918,16 +3917,16 @@ if uploaded_file is not None:
                 st.subheader('Form Input Data to Prediction')
                 user()
                 predict_user()
-
-            elif (model_option == 'Clustering'):
+        
+        except NameError:
+            st.warning("Wait until you are done selecting target data")
+            
+            if (model_option == 'Clustering'):
 
                 # run function
                 st.subheader('Clustering')
                 st.markdown('**Evaluation Metrics**')
                 clustering()
-
-        except NameError:
-            st.warning("Wait until you are done selecting target data")
 
     if __name__ == "__main__":
         main()
