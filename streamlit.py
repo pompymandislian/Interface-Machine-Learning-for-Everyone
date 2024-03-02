@@ -41,8 +41,24 @@ from sklearn.metrics import roc_auc_score
 from sklearn.inspection import permutation_importance
 from sklearn.decomposition import PCA
 
-with open('D:/Project_Data/project/Project Pribadi/Template Model/style.css') as f:
-    css = f.read()
+# URL file di GitHub
+github_url = 'https://raw.githubusercontent.com/pompymandislian/Interface-Machine-Learning-for-Everyone/main/style.css'
+
+# HTTP GET request to URL file GitHub
+response = requests.get(github_url)
+
+# Check request
+if response.status_code == 200:
+    # Read file
+    css = response.text
+
+    # Result
+    print(css)
+
+else:
+    print('Failed to retrieve CSS file:', response.status_code)
+
+st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # set pages of dashboard
 st.set_page_config(
