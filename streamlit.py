@@ -41,6 +41,13 @@ from sklearn.metrics import roc_auc_score
 from sklearn.inspection import permutation_importance
 from sklearn.decomposition import PCA
 
+# set pages of dashboard
+st.set_page_config(
+    page_title="UI Machine Learning",
+    page_icon="✅",
+    layout="wide",
+)
+
 # URL file di GitHub
 github_url = 'https://raw.githubusercontent.com/pompymandislian/Interface-Machine-Learning-for-Everyone/main/style.css'
 
@@ -59,13 +66,6 @@ else:
     print('Failed to retrieve CSS file:', response.status_code)
 
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
-
-# set pages of dashboard
-st.set_page_config(
-    page_title="UI Machine Learning",
-    page_icon="✅",
-    layout="wide",
-)
 
 # # Add content to the sidebar
 # # Obtain image from URL
