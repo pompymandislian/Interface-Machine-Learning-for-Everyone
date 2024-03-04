@@ -82,6 +82,28 @@ uploaded_file = st.sidebar.file_uploader("Choose CSV or Excel file", type=['csv'
 
 st.sidebar.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
+# HTML untuk menanamkan tombol dengan CSS
+button_html = """
+    <style>
+        .external-link {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 7px;
+            background-color: rgb(239, 247, 249);
+            color: #333;
+        }
+        .external-link:hover {
+            background-color: #fff;
+        }
+    </style>
+    <a class="external-link" href="https://www.google.com/search?sca_esv=682fb458cb082d73&rlz=1C1CHBF_enKR1058ID1058&sxsrf=ACQVn0-tyTd2f481K-TV5nlom58dn6NFZg:1708680383706&q=apel&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjMuri6ksGEAxXI1TgGHZwWDKYQ0pQJegQIDBAB&biw=1422&bih=612&dpr=1.35#imgrc=88-1RY50Ek_bsM" target="_blank">Guideline, Read Here!</a>
+"""
+
 # If the file has been uploaded
 if uploaded_file is not None:
 
