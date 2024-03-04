@@ -3623,7 +3623,7 @@ if uploaded_file is not None:
 
                 # Input data each columns
                 for col in data_columns:
-                    value = st.text_input(f"Input Values'{col}': ")
+                    value = st.text_input(f"<span style='color:black'>Input values '{col}':</span>", type="text")
                     
                     # Numeric col and category
                     if value.replace('.', '', 1).isdigit():
