@@ -3600,39 +3600,29 @@ if uploaded_file is not None:
             b64 = base64.b64encode(csv.encode()).decode()  # Convert dataframe to bytes
             href = f'<a href="data:file/csv;base64,{b64}" download="{model_select_clust}_clustered_data.csv">Download {model_select_clust} Clustered Data as CSV</a>'
             st.markdown(href, unsafe_allow_html=True)
-    # Add some CSS to change text color globally
-    st.markdown(
-        """
-        <style>
-        .stTextInput > div > div > div > input {
-            color: black !important;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-    def user():
+            
+       def user():
         """
         Function for input data from user
         """
         # Initialization input data
         global input_data
-
+    
         # machine learning option
         if model_option == 'Classification' or model_option == 'Regression':
-
+    
             # Condition original predictors
             if select_predictors == 'None':
-
+    
                 # Dict initialization
                 data = {}
-
+    
                 # Columns list
                 data_columns = X_test.columns.tolist()
-
+    
                 # Input data each columns
                 for col in data_columns:
-                    value = st.text_input(f"Input Values '{col}':")
+                    value = st.text_input(f"<span style='color:black'>Input Values '{col}':</span>", type="default", key=col)
                     
                     # Numeric col and category
                     if value.replace('.', '', 1).isdigit():
@@ -3642,7 +3632,7 @@ if uploaded_file is not None:
             
             # Condition with select a few predictors
             elif select_predictors == 'Manual Select':
-
+    
                 # Predictor name
                 selected_data = X_test[selected_predictors]
                 
@@ -3652,8 +3642,8 @@ if uploaded_file is not None:
                 
                 # Input data each columns
                 for col in data_columns:
-                    value = st.text_input(f"Input Values '{col}':")
-                
+                    value = st.text_input(f"<span style='color:black'>Input Values '{col}':</span>", type="default", key=col)
+                    
                     # Numeric col and category
                     if value.replace('.', '', 1).isdigit():
                         data[col] = float(value)
@@ -3663,17 +3653,6 @@ if uploaded_file is not None:
         input_data = pd.DataFrame([data])
         st.write(input_data)
 
-    # Add some CSS to change text color globally
-    st.markdown(
-        """
-        <style>
-        .stTextInput > div > div > div > input {
-            color: black !important;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
     def predict_user():
         """
         Function for result prediction 
