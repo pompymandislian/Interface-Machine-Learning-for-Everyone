@@ -3601,7 +3601,7 @@ if uploaded_file is not None:
             href = f'<a href="data:file/csv;base64,{b64}" download="{model_select_clust}_clustered_data.csv">Download {model_select_clust} Clustered Data as CSV</a>'
             st.markdown(href, unsafe_allow_html=True)
             
-       def user():
+    def user():
         """
         Function for input data from user
         """
