@@ -3600,8 +3600,17 @@ if uploaded_file is not None:
             b64 = base64.b64encode(csv.encode()).decode()  # Convert dataframe to bytes
             href = f'<a href="data:file/csv;base64,{b64}" download="{model_select_clust}_clustered_data.csv">Download {model_select_clust} Clustered Data as CSV</a>'
             st.markdown(href, unsafe_allow_html=True)
-    
-        
+    # Add some CSS to change text color globally
+    st.markdown(
+        """
+        <style>
+        .stTextInput > div > div > div > input {
+            color: black !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     def user():
         """
         Function for input data from user
