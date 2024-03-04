@@ -113,10 +113,6 @@ st.sidebar.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # If the file has been uploaded
 if uploaded_file is not None:
-
-    st.title("Welcome!")
-    st.write("We can help with your data to bussiness predict."
-            " Don't forget to read our **Guideline** to learn more. Thanks! 😊.")
     
     # Check the type of the uploaded file
     file_ext = uploaded_file.name.split('.')[-1]
