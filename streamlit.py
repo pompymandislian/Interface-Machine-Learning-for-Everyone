@@ -3624,7 +3624,6 @@ if uploaded_file is not None:
                 # Input data each columns
                 for col in data_columns:
                     value = st.text_input(f"Input Values '{col}':")
-                    st.markdown(f"<span style='color:black'>{value}</span>", unsafe_allow_html=True)
                     
                     # Numeric col and category
                     if value.replace('.', '', 1).isdigit():
@@ -3645,7 +3644,6 @@ if uploaded_file is not None:
                 # Input data each columns
                 for col in data_columns:
                     value = st.text_input(f"Input Values '{col}':")
-                    st.markdown(f"<span style='color:black'>{value}</span>", unsafe_allow_html=True)
                 
                     # Numeric col and category
                     if value.replace('.', '', 1).isdigit():
@@ -3656,6 +3654,17 @@ if uploaded_file is not None:
         input_data = pd.DataFrame([data])
         st.write(input_data)
 
+    # Add some CSS to change text color globally
+    st.markdown(
+        """
+        <style>
+        .stTextInput > div > div > div > input {
+            color: black !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     def predict_user():
         """
         Function for result prediction 
