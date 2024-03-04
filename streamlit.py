@@ -6,6 +6,8 @@ from io import BytesIO
 import matplotlib.pyplot as plt
 import base64
 from scipy.stats import uniform, randint
+import utils as utl
+import os
 
 # Feature Engineering
 from sklearn.model_selection import train_test_split, RandomizedSearchCV, KFold
@@ -48,6 +50,15 @@ st.set_page_config(
     layout="wide",
 )
 
+utl.set_page_title('UI Machine Learning')
+utl.local_css("style.css")
+dir_root = os.path.dirname(os.path.abspath(__file__))
+logo = Image.open(dir_root+'/icon.png')
+
+st.title("Welcome!")
+st.write("We can help with your data to bussiness predict."
+        " Don't forget to read our **Guideline** to learn more. Thanks! 😊.")
+
 # URL file di GitHub
 github_url = 'https://raw.githubusercontent.com/pompymandislian/Interface-Machine-Learning-for-Everyone/main/style.css'
 
@@ -66,6 +77,31 @@ else:
     print('Failed to retrieve CSS file:', response.status_code)
 
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+
+# HTML untuk menanamkan tombol dengan CSS
+button_html = """
+    <style>
+        .external-link {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 7px;
+            background-color: rgb(239, 247, 249);
+            color: #333;
+        }
+        .external-link:hover {
+            background-color: #fff;
+        }
+    </style>
+    <a class="external-link" href="https://www.google.com/search?sca_esv=682fb458cb082d73&rlz=1C1CHBF_enKR1058ID1058&sxsrf=ACQVn0-tyTd2f481K-TV5nlom58dn6NFZg:1708680383706&q=apel&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjMuri6ksGEAxXI1TgGHZwWDKYQ0pQJegQIDBAB&biw=1422&bih=612&dpr=1.35#imgrc=88-1RY50Ek_bsM" target="_blank">Guideline, Read Here!</a>
+"""
+
+# Menanamkan tombol HTML ke dalam aplikasi Streamlit
+st.sidebar.markdown(button_html, unsafe_allow_html=True)
 
 # # Add content to the sidebar
 # # Obtain image from URL
