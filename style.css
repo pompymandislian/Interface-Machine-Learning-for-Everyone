@@ -1,86 +1,103 @@
-/* Import the Poppins font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Apply Poppins font to all text elements */
-* {
+*, body, header, h1, span, div {
     font-family: "Poppins", sans-serif;
-}
-
-/* Rules for the header */
-.stApp > header {
-    background-color: transparent;
-    color: #000; /* Header text color changed to black */
-}
-
-.stApp > header .sidebar .title .sidebar-content .sidebar-item.stTitle {
     font-weight: 400;
     font-style: normal;
+  }
+  
+.st-emotion-cache-1dp5vir {
+    visibility: hidden;
+  }
+footer {
+    visibility: hidden;
 }
 
-/* Rules for the main content */
+/* Aturan untuk konten utama */
 .stApp {
     margin: auto;
-    font-weight: 400;
-    font-style: normal;
     overflow: auto;
-    background-color: #2f70a5;
-    animation: gradient 15s ease infinite;
+    background-color: rgb(239, 247, 249);
     background-size: 400% 400%;
     background-attachment: fixed;
-    color: #fff; /* Text color white */
+    color: #333; /* Warna Teks Hitam */
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
 }
 
-/* Rules for the main content */
+.stApp > header {
+    background-color: transparent;
+}
+
+section:first-child {
+    background-color: rgb(40, 101, 117);
+    color: white;
+}
+
+/* Aturan untuk konten utama */
 .stApp .main-content {
-    margin-left: 20%; /* Shift main content to the right */
-    padding: 20px; /* Padding for specific content space */
+    margin-left: 20%; /* Menggeser konten utama ke kanan */
+    padding: 20px; /* Padding untuk ruang khusus konten */
 }
 
-/* Rules for buttons */
+/* Aturan untuk tombol */
 .stApp button {
-    background-color: #333; /* Button background color */
-    color: #fff; /* Button text color changed to white */
-    border: none; /* No border */
-    padding: 10px 20px; /* Padding */
-    cursor: pointer; /* Cursor indicates action can be taken */
-    border-radius: 4px; /* Border-radius corner */
-    font-size: 16px; /* Font size */
-    transition: background-color 0.3s ease; /* Transition effect */
+    background-color: rgb(40, 101, 117); /* Warna latar belakang tombol */
+    color: #ffffff; /* Warna teks tombol diubah menjadi hitam */
+    border: none; /* Tanpa border */
+    padding: 8px 18px; /* Padding */
+    cursor: pointer; /* Kursor menunjukkan tindakan dapat dilakukan */
+    border-radius: 7px; /* Sudut border-radius */
+    font-size: 14px; /* Ukuran font */
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
 }
 
 .stApp button:hover {
-    background-color: #fff; /* Button background color on hover */
-    color: #333; /* Button text color on hover */
+    background-color: rgba(255, 255, 255, 0.8); /* Warna latar belakang tombol saat hover */
+    color: #fff;
 }
 
-/* Rules for select boxes */
+/* Aturan untuk kotak pilihan */
 .stApp select {
-    background-color: #fff; /* Select box background color */
-    color: #000; /* Select box text color changed to black */
+    background-color: #fff; /* Warna latar belakang kotak pilihan */
+    color: #000; /* Warna teks kotak pilihan diubah menjadi hitam */
     border: 1px solid #ced4da; /* Border */
     padding: 8px 12px; /* Padding */
-    font-size: 16px; /* Font size */
-    border-radius: 4px; /* Border-radius corner */
+    font-size: 16px; /* Ukuran font */
+    border-radius: 4px; /* Sudut border-radius */
 }
 
-/* Rules for selected options in select boxes */
+/* Aturan untuk kotak pilihan yang telah dipilih */
 .stApp select option:checked {
-    background-color: #007bff; /* Background color for selected options */
-    color: #fff; /* Text color for selected options */
+    background-color: #41eeac; /* Warna latar belakang kotak pilihan yang dipilih */
+    color: #fff; /* Warna teks kotak pilihan yang dipilih */
 }
 
-/* Hover effect for select boxes */
+.stToolbar{
+    visibility: None;
+}
+
+
+/* Efek hover untuk kotak pilihan */
 .stApp select:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan saat hover */
 }
 
-.stApp .sidebar-item {
-    background-color: #333; /* Background color on hover */
-    font-weight: 400;
-    font-style: normal;
-}
-
-/* Hover effect for sidebar items */
+/* Efek hover untuk sidebar item */
 .stApp .sidebar-item:hover {
-    background-color: #636262; /* Background color on hover */
+    background-color: rgba(255, 255, 255, 0.8); /* Warna latar belakang saat hover */
+}
+
+.stHeadingContainer > .stMarkdown > div > div > h1 :first-child{
+    color: #333;
+}
+
+.stMarkdown > div > div > h1 {
+    color: rgb(239, 247, 249);
+}
+
+label > div > p {
+    color: rgb(239, 247, 249);
+    font-size: 12px;
 }
