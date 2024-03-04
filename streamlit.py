@@ -52,8 +52,6 @@ st.set_page_config(
 
 utl.set_page_title('UI Machine Learning')
 utl.local_css("style.css")
-dir_root = os.path.dirname(os.path.abspath(__file__))
-logo = Image.open(dir_root+'/icon.png')
 
 st.title("Welcome!")
 st.write("We can help with your data to bussiness predict."
