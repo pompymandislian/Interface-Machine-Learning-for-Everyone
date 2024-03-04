@@ -53,10 +53,6 @@ st.set_page_config(
 utl.set_page_title('UI Machine Learning')
 utl.local_css("style.css")
 
-st.title("Welcome!")
-st.write("We can help with your data to bussiness predict."
-        " Don't forget to read our **Guideline** to learn more. Thanks! 😊.")
-
 # URL file di GitHub
 github_url = 'https://raw.githubusercontent.com/pompymandislian/Interface-Machine-Learning-for-Everyone/main/style.css'
 
@@ -65,6 +61,7 @@ response = requests.get(github_url)
 
 # Check request
 if response.status_code == 200:
+    
     # Read file
     css = response.text
 
@@ -97,8 +94,7 @@ button_html = """
     </style>
     <a class="external-link" href="https://www.google.com/search?sca_esv=682fb458cb082d73&rlz=1C1CHBF_enKR1058ID1058&sxsrf=ACQVn0-tyTd2f481K-TV5nlom58dn6NFZg:1708680383706&q=apel&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjMuri6ksGEAxXI1TgGHZwWDKYQ0pQJegQIDBAB&biw=1422&bih=612&dpr=1.35#imgrc=88-1RY50Ek_bsM" target="_blank">Guideline, Read Here!</a>
 """
-
-# Menanamkan tombol HTML ke dalam aplikasi Streamlit
+# HTML Button
 st.sidebar.markdown(button_html, unsafe_allow_html=True)
 
 # # Add content to the sidebar
@@ -118,6 +114,10 @@ st.sidebar.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 # If the file has been uploaded
 if uploaded_file is not None:
 
+    st.title("Welcome!")
+    st.write("We can help with your data to bussiness predict."
+            " Don't forget to read our **Guideline** to learn more. Thanks! 😊.")
+    
     # Check the type of the uploaded file
     file_ext = uploaded_file.name.split('.')[-1]
 
