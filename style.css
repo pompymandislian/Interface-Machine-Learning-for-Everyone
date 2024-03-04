@@ -97,11 +97,20 @@ section:first-child {
     color: rgb(239, 247, 249);
 }
 
-label > div > p {
+section > div > div > div > div > div > div > div > div > label > div > p {
     color: rgb(239, 247, 249);
     font-size: 12px;
 }
 
 label > div > p {
-    color: #000 !important;
+    color: #333;
+    font-size: 12px;
+}
+
+header > div > div {
+    visibility: hidden;
+}
+
+.styles_terminalButton__JBj5T {
+    visibility: hidden;
 }
